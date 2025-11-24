@@ -11,8 +11,22 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+$conn->query($sql);
 
-// Get form data safely
+
+$conn->select_db($dbname);
+
+$createTable = "CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    pass VARCHAR(255),
+    email VARCHAR(255),
+    name VARCHAR(255),
+    password VARCHAR(255)
+)";
+$conn->query($createTable);
+
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 $confirm_password = $_REQUEST['confirm_password'];
