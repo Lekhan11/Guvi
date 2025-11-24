@@ -1,23 +1,16 @@
 FROM php:8.2-apache
 
-# Install basic libs
-RUN apt-get update && apt-get install -y \
-    zip unzip git curl
-
-# Install PHP extensions
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-
-# Enable Apache rewrite module
+# Enable apache rewrite
 RUN a2enmod rewrite
-
-# Copy Composer from official image
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
-COPY . .
+# Copy source code
+COPY . /var/www/html
 
-# Install dependencies inside container
-RUN composer install --
+# Give permissions
+RUN chown -R www-data:www-data /var/www/html
+
+# Install mysqli
+RUN docker-php-ext-install mysqli pdo pdo_mysql
