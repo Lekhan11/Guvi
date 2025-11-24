@@ -15,18 +15,6 @@ $(document).ready(function() {
         window.location.href = "login.html";
     });
 
-    // const token = JSON.parse(localStorage.getItem('loginSession')).token;
-    // $.ajax({
-    //     url: 'php/sessionchk.php',
-    //     type: 'POST',
-    //     data: 'token=' + token
-    // }).done(function(response) {
-    //     data = JSON.parse(response);
-    //     if (!data.valid) {
-    //         window.location.href = "login.html";
-    //         return;
-    //     }
-    // });
 
     $.ajax({
         url: 'php/profile.php',

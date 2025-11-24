@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
         "username" => $_REQUEST['username'],
         "login_time" => time()
     ]));
-    $redis->expire("session:$token", 3600); // Session expires in 1 hour
+    $redis->expire("session:$token", 3600); 
     echo json_encode(["token" => $token, "status" => "success", "username" => $_REQUEST['username']]);
 } else {
     echo json_encode(["status" => "error"]);

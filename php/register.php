@@ -62,14 +62,13 @@ if ($password == $confirm_password) {
     // Prepared Statement
     $stmt = $conn->prepare("INSERT INTO userdetails (username, pass, email, name) VALUES (?, ?, ?, ?)");
 
-    // Bind parameters
     $stmt->bind_param("ssss", $username, $password, $email, $name);
 
     // Execute
     if ($stmt->execute()) {
         $client = new MongoDB\Client("mongodb://localhost:27017");
-        $db = $client->guviDetails;  // database
-        $users = $db->users;          // collection
+        $db = $client->guviDetails;  
+        $users = $db->users;          
         $insertResult = $users->insertOne([
             'username' => $username,
             'email' => $email,

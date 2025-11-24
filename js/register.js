@@ -1,15 +1,16 @@
  $("#myForm").submit(function(e){
-        e.preventDefault(); // Page reload prevent
-
+        e.preventDefault();  
         $.ajax({
             url: "./php/register.php",
             type: "POST",
-            data: $(this).serialize(), // Form data send
+            data: $(this).serialize(),  
             success: function(response){
                 if(response.trim() === "success"){
-                    window.location.href = "login.html"; // Redirect to login page
+                    alert("Registration Successful! Please login.");
+                    window.location.href = "login.html";    
                 } else {
-                $("#result").html(response); // Response display
+                $("#result").html(response);
+                $("#result").prop("hidden", false); 
             }
 
             }

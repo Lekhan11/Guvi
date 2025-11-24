@@ -1,10 +1,10 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';  // composer autoload
+require __DIR__ . '/../vendor/autoload.php';  
 header("Content-Type: application/json");
 
 $client = new MongoDB\Client("mongodb://localhost:27017");
-$db = $client->guviDetails;  // database
-$users = $db->users;          // collection
+$db = $client->guviDetails;  
+$users = $db->users;          
 
 $users->updateOne(
     ['username' => $_POST['editUsername']],
