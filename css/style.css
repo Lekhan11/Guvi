@@ -1,0 +1,19 @@
+
+:root {
+    --dark-pink: #E83C91;
+    --light-pink: #FF8FB7;
+    --slate: #F8F4EC;
+    --background: #adeed9;
+}
+.background {
+    background-color: var(--background);
+}
+.dark-pink{
+    color: var(--dark-pink);
+}
+.light-pink{
+    color: var(--light-pink);
+}
+.slate{
+    color: var(--slate);
+}
