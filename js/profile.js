@@ -1,11 +1,38 @@
 $(document).ready(function() {
+
+    loggedIn = localStorage.getItem('loginSession')
+    if (!loggedIn) {
+        window.location.href = "login.html";
+    }
+
+    $("#logoutBtn").click(function(){
+        $.ajax({
+            url: 'php/sessionchk.php',
+            type: 'POST',
+            data: 'token=' + JSON.parse(localStorage.getItem('loginSession')).token
+        });
+        localStorage.removeItem("loginSession");
+        window.location.href = "login.html";
+    });
+
+    // const token = JSON.parse(localStorage.getItem('loginSession')).token;
+    // $.ajax({
+    //     url: 'php/sessionchk.php',
+    //     type: 'POST',
+    //     data: 'token=' + token
+    // }).done(function(response) {
+    //     data = JSON.parse(response);
+    //     if (!data.valid) {
+    //         window.location.href = "login.html";
+    //         return;
+    //     }
+    // });
+
     $.ajax({
         url: 'php/profile.php',
         type: 'POST',
         data: 'username=' + JSON.parse(localStorage.getItem('loginSession')).username
     }).done(function(data) {
-        console.log(data);
-        
         if(data.error){
             alert(data.error);
             return;

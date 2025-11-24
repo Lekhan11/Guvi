@@ -21,6 +21,9 @@ $stmt->bind_param("ss", $_REQUEST['username'], $_REQUEST['password']);
 $stmt->execute();
 $result = $stmt->get_result();
 if ($result->num_rows > 0) {
+    $sessionData = 
+
+
     $token = bin2hex(random_bytes(32));
     $redis->set("session:$token", json_encode([
         "username" => $_REQUEST['username'],

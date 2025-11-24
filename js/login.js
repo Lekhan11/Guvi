@@ -1,7 +1,12 @@
 $(document).ready(function() {
+    sessionData=localStorage.getItem("loginSession")
+    if(sessionData){
+        window.location.href = "profile.html";  // 🔥 redirect
+    }
+
+    
 $("#loginForm").submit(function(event) {
     event.preventDefault(); // Prevent the default form submission
-    
     $.ajax({
         url: "./php/login.php",
         type: "POST",
