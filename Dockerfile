@@ -1,26 +1,16 @@
 FROM php:8.2-apache
 
-# Install required packages
 RUN apt-get update && apt-get install -y \
-    libssl-dev \
-    pkg-config \
-    unzip \
-    && rm -rf /var/lib/apt/lists/*
+    libpng-dev \
+    libjpeg-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip unzip git curl
 
-# Install MongoDB extension
-RUN pecl install mongodb \
-    && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+COPY . /var/www/html/
 
-# Copy app
-COPY . /var/www/html
-
-# Install composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Composer install
-RUN composer install --no-dev --prefer-dist --no-interaction --no-progress
+RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
