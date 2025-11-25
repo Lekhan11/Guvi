@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$servername = 'mysql';
+$servername = '127.0.0.1';
 $username = 'root';
 $password = 'lekhan2005';
 $dbname = "guvi";

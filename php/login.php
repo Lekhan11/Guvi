@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$server = 'mysql';
+$server = '127.0.0.1';
 $user = 'root';
 $pass = 'lekhan2005';
 $db = 'guvi';
